@@ -26,18 +26,6 @@ const userSchema = new mongoose.Schema(
 
 const User = mongoose.model("User", userSchema);
 
-app.get("/health", (req, res) => {
-  res.json({ success: true, service: "user-service" });
-});
-app.get("/api/users", async (req, res) => {
-  try {
-    const users = await User.find();
-    res.json(users);
-  } catch (error) {
-    res.status(500).json({ message:error.message });
-  }
-});
-
 app.post("/api/users/register", async (req, res) => {
   try {
     const { name, email, role, phone, address } = req.body;
@@ -147,6 +135,19 @@ async function start() {
 
     const PORT = process.env.PORT || 5001;
 
+    app.get("/health", (req, res) => {
+  res.json({ success: true, service: "user-service" });
+});
+    
+    app.get("/api/users", async (req, res) => {
+  try {
+    const users = await User.find();
+    res.json(users);
+  } catch (error) {
+    res.status(500).json({ message:error.message });
+  }
+});
+    
     app.listen(PORT, "0.0.0.0", () => {
       console.log(`User service running on port ${PORT}`);
     });
