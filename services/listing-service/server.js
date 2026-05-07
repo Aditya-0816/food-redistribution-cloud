@@ -199,7 +199,7 @@ async function start() {
 
     const PORT = process.env.LISTING_PORT || 5002;
 
-    app.listen(PORT, () => {
+    app.listen(PORT, "0.0.0.0", () => {
       console.log(`Listing service running on port ${PORT}`);
     });
 
