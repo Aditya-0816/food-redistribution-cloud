@@ -52,6 +52,15 @@ app.get("/health", (req, res) => {
   res.json({ success: true, service: "claim-service" });
 });
 
+app.get("/api/claims", async (req, res) => {
+  try {
+    const claims = await Claim.find();
+    res.json(claims);
+  } catch (error) {
+    res.status(500).json({ message:error.message });
+  }
+});
+
 app.post("/api/claims", async (req, res) => {
   try {
     const { listingId, ngoName, ngoContact, pickupPerson } = req.body;
