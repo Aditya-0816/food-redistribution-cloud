@@ -29,6 +29,14 @@ const User = mongoose.model("User", userSchema);
 app.get("/health", (req, res) => {
   res.json({ success: true, service: "user-service" });
 });
+app.get("/api/users", async (req, res) => {
+  try {
+    const users = await User.find();
+    res.json(users);
+  } catch (error) {
+    res.status(500).json({ message:error.message });
+  }
+});
 
 app.post("/api/users/register", async (req, res) => {
   try {
