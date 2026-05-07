@@ -42,19 +42,6 @@ function serializeListing(listing) {
   return obj;
 }
 
-app.get("/health", (req, res) => {
-  res.json({ success: true, service: "listing-service" });
-});
-
-app.get("/api/listings", async (req, res) => {
-  try {
-    const listings = await Listing.find();
-    res.json(listings);
-  } catch (error) {
-    res.status(500).json({ message:error.message });
-  }
-});
-
 app.post("/api/listings", async (req, res) => {
   try {
     const { restaurantName, foodType, quantity, location, contactPhone, expiryHours, notes } = req.body;
@@ -207,7 +194,19 @@ async function start() {
     await connectDB(process.env.LISTING_MONGO_URI);
 
     const PORT = process.env.LISTING_PORT || 5002;
-
+    
+    app.get("/health", (req, res) => {
+      res.json({ success: true, service: "listing-service" });
+    });
+    
+    app.get("/api/listings", async (req, res) => {
+      try {
+        const listings = await Listing.find();
+        res.json(listings);
+      } catch (error) {
+        res.status(500).json({ message:error.message });
+      });
+    
     app.listen(PORT, "0.0.0.0", () => {
       console.log(`Listing service running on port ${PORT}`);
     });
