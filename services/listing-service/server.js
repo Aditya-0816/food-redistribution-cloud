@@ -46,6 +46,15 @@ app.get("/health", (req, res) => {
   res.json({ success: true, service: "listing-service" });
 });
 
+app.get("/api/listings", async (req, res) => {
+  try {
+    const listings = await Listing.find();
+    res.json(listings);
+  } catch (error) {
+    res.status(500).json({ message:error.message });
+  }
+});
+
 app.post("/api/listings", async (req, res) => {
   try {
     const { restaurantName, foodType, quantity, location, contactPhone, expiryHours, notes } = req.body;
