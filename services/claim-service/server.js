@@ -48,19 +48,6 @@ async function updateListingStatus(listingId, status) {
   return { response, data };
 }
 
-app.get("/health", (req, res) => {
-  res.json({ success: true, service: "claim-service" });
-});
-
-app.get("/api/claims", async (req, res) => {
-  try {
-    const claims = await Claim.find();
-    res.json(claims);
-  } catch (error) {
-    res.status(500).json({ message:error.message });
-  }
-});
-
 app.post("/api/claims", async (req, res) => {
   try {
     const { listingId, ngoName, ngoContact, pickupPerson } = req.body;
@@ -236,6 +223,19 @@ async function start() {
 
     const PORT = process.env.CLAIM_PORT || 5003;
 
+    app.get("/health", (req, res) => {
+      res.json({ success: true, service: "claim-service" });
+    });
+    
+    app.get("/api/claims", async (req, res) => {
+      try {
+        const claims = await Claim.find();
+        res.json(claims);
+      } catch (error) {
+        res.status(500).json({ message:error.message });
+      }
+    });
+    
     app.listen(PORT, "0.0.0.0", () => {
       console.log(`Claim service running on port ${PORT}`);
     });
