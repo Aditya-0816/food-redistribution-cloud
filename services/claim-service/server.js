@@ -227,7 +227,7 @@ async function start() {
 
     const PORT = process.env.CLAIM_PORT || 5003;
 
-    app.listen(PORT, () => {
+    app.listen(PORT, "0.0.0.0", () => {
       console.log(`Claim service running on port ${PORT}`);
     });
 
