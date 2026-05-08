@@ -197,7 +197,7 @@ async function start() {
   try {
     await connectDB(process.env.LISTING_MONGO_URI);
 
-    const PORT = process.env.LISTING_PORT || 5002;
+    const PORT = process.env.LISTING_PORT || 5004;
     
     app.get("/health", (req, res) => {
       res.json({ success: true, service: "listing-service" });
