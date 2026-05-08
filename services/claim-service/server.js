@@ -33,7 +33,7 @@ const claimSchema = new mongoose.Schema(
 const Claim = mongoose.model("Claim", claimSchema);
 
 function listingBaseUrl() {
-  return process.env.LISTING_SERVICE_URL || "http://localhost:5002";
+  return process.env.LISTING_SERVICE_URL || "http://localhost:5004";
 }
 
 async function fetchListing(listingId) {
