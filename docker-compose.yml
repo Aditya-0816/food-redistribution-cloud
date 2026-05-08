@@ -26,12 +26,12 @@ services:
     container_name: food_listing_service
     command: node services/listing-service/server.js
     environment:
-      LISTING_PORT: 5002
+      LISTING_PORT: 5004
       LISTING_MONGO_URI: mongodb://mongo:27017/listing_service_db
     depends_on:
       - mongo
     ports:
-      - "5002:5002"
+      - "5004:5004"
 
   claim-service:
     build: .
