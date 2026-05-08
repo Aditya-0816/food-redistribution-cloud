@@ -38,14 +38,14 @@ services:
     container_name: food_claim_service
     command: node services/claim-service/server.js
     environment:
-      CLAIM_PORT: 5003
+      CLAIM_PORT: 5005
       CLAIM_MONGO_URI: mongodb://mongo:27017/claim_service_db
       LISTING_SERVICE_URL: http://listing-service:5002
     depends_on:
       - mongo
       - listing-service
     ports:
-      - "5003:5003"
+      - "5005:5005"
 
 volumes:
   mongo_data:
