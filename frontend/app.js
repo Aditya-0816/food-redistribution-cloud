@@ -1,6 +1,6 @@
-const USER_API    = "http://13.127.215.27:5001/api/users";
-const LISTING_API = "http://13.127.215.27:5002/api/listings";
-const CLAIM_API   = "http://13.127.215.27:5003/api/claims";
+const USER_API    = "http://13.206.206.49:5001/api/users";
+const LISTING_API = "http://13.206.206.49:5002/api/listings";
+const CLAIM_API   = "http://13.206.206.49:5003/api/claims";
 
 // ── Tab navigation ──
 function switchTab(name) {
