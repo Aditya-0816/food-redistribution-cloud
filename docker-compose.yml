@@ -40,7 +40,7 @@ services:
     environment:
       CLAIM_PORT: 5005
       CLAIM_MONGO_URI: mongodb://mongo:27017/claim_service_db
-      LISTING_SERVICE_URL: http://listing-service:5002
+      LISTING_SERVICE_URL: http://listing-service:5004
     depends_on:
       - mongo
       - listing-service
